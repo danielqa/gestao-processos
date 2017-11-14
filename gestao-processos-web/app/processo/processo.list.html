@@ -1,0 +1,100 @@
+<fieldset>
+    <legend>Filtros</legend>
+
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Número processo unificado</label>
+            <input type="text" class="form-control" ng-model="filtro.numero" maxlength="20" somente-numeros/>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Data distribuição Início - Fim</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="filtro.dataDistribuicaoInicio" date-picker/>
+                <span class="input-group-addon">Até</span>
+                <input type="text" class="form-control" ng-model="filtro.dataDistribuicaoFim" date-picker/>
+            </div>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Situação</label>
+            <select class="form-control" ng-model="filtro.situacao" ng-options="situacao.id as situacao.descricao for situacao in situacoes">
+                <option value="">- Selecionar -</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label></label>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="filtro.segredoJustica"/>Segredo de justiça
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-5">
+            <label>Pasta física cliente</label>
+            <input type="text" class="form-control" ng-model="filtro.pastaFisicaCliente" maxlength="50"/>
+        </div>
+
+        <div class="form-group col-md-5">
+            <label>Responsável</label>
+            <input type="text" class="form-control" ng-model="filtro.nomeResponsavel" maxlength="150"/>
+        </div>
+
+        <div class="form-group">
+            <label>&nbsp;</label>
+            <div class="col-md-2">
+                <button class="btn btn-primary col-md-12" type="button" ng-click="consultar()">Consultar</button>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<div class="table-responsive" ng-if="processos !== undefined">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th width="14%">Número processo unificado</th>
+            <th width="10%">Data distribuição</th>
+            <th width="10%">Segredo de justiça</th>
+            <th width="14%">Pasta física cliente</th>
+            <th width="20%">Descrição</th>
+            <th width="10%">Situação</th>
+            <th width="20%">Responsáveis</th>
+            <th colspan="2">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr dir-paginate="processo in processos | itemsPerPage: pageSize" current-page="currentPage" total-items="totalItems">
+            <td>{{ processo.numero }}</td>
+            <td>{{ processo.dataDistribuicao | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ processo.segredoJustica ? 'Sim' : 'Não' }}</td>
+            <td>{{ processo.pastaFisicaCliente }}</td>
+            <td>{{ processo.descricao }}</td>
+            <td>{{ processo.situacao.descricao }}</td>
+            <td>{{ processo.nomeResponsaveis }}</td>
+            <td>
+                <a href="#/processo/{{processo.id}}" class="btn btn-primary btn-xs">
+                    <span class="glyphicon glyphicon-pencil"></span> Editar
+                </a>
+            </td>
+            <td>
+                <button class="btn btn-danger btn-xs" type="button" ng-click="delete(processo)">
+                    <span class="glyphicon glyphicon-trash"></span> Excluir
+                </button>
+            </td>
+        </tr>
+        <tr ng-if="!processos.length">
+            <td colspan="9">
+                <span>Nenhum registro encontrado!</span>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <dir-pagination-controls boundary-links="true" on-page-change="consultar(newPageNumber)"></dir-pagination-controls>
+        </tfoot>
+    </table>
+</div>

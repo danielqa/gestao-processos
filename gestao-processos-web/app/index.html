@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SAJADV - Processos</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.css"/>
+    <link rel="stylesheet" href="node_modules/selectize/dist/css/selectize.bootstrap3.css"/>
+    <link rel="stylesheet" href="node_modules/alertifyjs/build/css/alertify.css"/>
+    <link rel="stylesheet" href="node_modules/alertifyjs/build/css/themes/bootstrap.css"/>
+    <link rel="stylesheet" href="styles/roboto.css"/>
+    <link rel="stylesheet" href="styles/loader.css"/>
+    <link rel="stylesheet" href="styles/app.css"/>
+</head>
+<body>
+<ng-include src="'layout/menu.html'"></ng-include>
+
+<div class="splash" ng-cloak></div>
+
+<div id="wrap" ng-cloak>
+    <div class="container">
+        <h2 class="page-header" ng-if="title">Gestão de processos | {{title}}</h2>
+        <div flash-message class="text-center"></div>
+        <div ng-view></div>
+    </div>
+</div>
+
+<div id="footer" ng-cloak>&copy; Softplan 2016</div>
+
+<script type="text/javascript" src="index.bundle.js"></script>
+
+<ng-include src="'layout/loader.html'"></ng-include>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# Package Files
+*.jar
+*.ear
+*.log
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Maven
+log/
+target/
+
+# Gradle
+.gradle
+/out
+/build
+
+# Npm
+node_modules
+
+# Webpack
+*.bundle.js
+*.map

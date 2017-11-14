@@ -1,0 +1,69 @@
+<form name="form" ng-submit="save()">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Número processo unificado</label>
+            <input type="text" class="form-control" ng-model="processo.numero" maxlength="20" somente-numeros
+                   ng-disabled="isEdit && isFinalizado"/>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label>Data distribuição</label>
+            <input type="text" class="form-control" ng-model="processo.dataDistribuicao" date-picker
+                   ng-disabled="isEdit && isFinalizado"/>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Situação</label>
+            <select class="form-control" ng-model="processo.situacao" ng-options="situacao.id as situacao.descricao for situacao in situacoes"
+                    ng-disabled="isEdit && isFinalizado">
+                <option value="">- Selecionar -</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label>Pasta física cliente</label>
+            <input type="text" class="form-control" ng-model="processo.pastaFisicaCliente" maxlength="50"
+                   ng-disabled="isEdit && isFinalizado"/>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label></label>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="processo.segredoJustica" ng-disabled="isEdit && isFinalizado"/>Segredo de justiça
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-5">
+            <fieldset class="has-feedback">
+                <legend>Responsáveis</legend>
+                <input type="text" selectize="responsaveisSelectize" config="responsaveisConfig" options="responsaveis_options()"
+                       ng-model="processo.responsaveis" placeholder="- Selecionar -" ng-disabled="isEdit && isFinalizado"/>
+                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            </fieldset>
+        </div>
+
+        <div class="form-group col-md-7">
+            <label>Descrição</label>
+            <textarea class="form-control" ng-model="processo.descricao" rows="5" ng-disabled="isEdit && isFinalizado"></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label>Processo vinculado</label>
+            <select selectize="processoPaiSelectize" config="processoPaiConfig" options="processo_pai_options()"
+                    ng-disabled="isEdit && isFinalizado" ng-model="processo.processoPai.id"></select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-offset-10 col-md-2">
+            <button class="btn btn-primary col-md-12" type="submit"
+                    ng-disabled="isEdit && isFinalizado">{{isEdit ? 'Salvar' : 'Cadastrar'}}</button>
+        </div>
+    </div>
+</form>

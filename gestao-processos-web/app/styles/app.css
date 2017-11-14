@@ -1,0 +1,53 @@
+html, body {
+    height: 100%;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -20px;
+    padding: 50px 0 20px;
+}
+
+#footer {
+    text-align: center;
+    font-size: x-small;
+    height: 20px;
+}
+
+[ng-cloak].splash {
+    display: block !important;
+    background: #bfbfbf url('../images/logo_sajadv.png') no-repeat center;
+    background-size: 20%;
+    width: 100%;
+    height: 100%;
+}
+
+[ng-cloak]#wrap, [ng-cloak]#footer {
+    display: none;
+}
+
+.alertIn, .alertOut {
+    -webkit-transition: -webkit-transform 0.22s cubic-bezier(0.25, 0, 0.25, 1), opacity 0.22s cubic-bezier(0.25, 0, 0.25, 1);
+    -moz-transition: -moz-transform 0.22s cubic-bezier(0.25, 0, 0.25, 1), opacity 0.22s cubic-bezier(0.25, 0, 0.25, 1);
+    -o-transition: -o-transform 0.22s cubic-bezier(0.25, 0, 0.25, 1), opacity 0.22s cubic-bezier(0.25, 0, 0.25, 1);
+    transition: transform 0.22s cubic-bezier(0.25, 0, 0.25, 1), opacity 0.22s cubic-bezier(0.25, 0, 0.25, 1);
+}
+.alertIn.ng-hide-remove, .alertOut.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+    -webkit-transform: translate3d(100px, 0px, 0px);
+    transform: translate3d(100px, 0px, 0px);
+    display: block !important;
+}
+.alertOut.ng-hide-add, .alertIn.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+    display: block !important;
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    transform: translate3d(0px, 0px, 0px);
+}
