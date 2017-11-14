@@ -14,8 +14,8 @@ target/
 
 # Gradle
 .gradle
-/out
-/build
+**/out
+**/build
 
 # Npm
 node_modules
